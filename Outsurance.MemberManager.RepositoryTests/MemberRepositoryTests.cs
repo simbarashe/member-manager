@@ -99,6 +99,17 @@ namespace Outsurance.MemberManager.RepositoryTests
         }
 
         [TestMethod]
+        public void Should_NotAddAddresses_When_Empty()
+        {
+            var memberRepository = new MemberRepository();
+            var addresses = new List<Address>();
+
+            var success = memberRepository.Add(addresses);
+
+            Assert.IsFalse(success);
+        }
+
+        [TestMethod]
         public void Should_AddNameFrequencies()
         {
             var memberRepository = new MemberRepository();
@@ -125,6 +136,19 @@ namespace Outsurance.MemberManager.RepositoryTests
 
             Assert.AreEqual(6, nameFrequencies.Count());
             Assert.IsTrue(success);
+        }
+
+
+        [TestMethod]
+        public void Should_NotAddNameFrequencies_When_Empty()
+        {
+            var memberRepository = new MemberRepository();         
+
+            var nameFrequencies = new List<NameFrequency>();
+
+            var success = memberRepository.Add(nameFrequencies);
+
+            Assert.IsFalse(success);
         }
     }
 }
